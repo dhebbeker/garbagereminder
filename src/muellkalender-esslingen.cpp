@@ -47,7 +47,7 @@ String convertSpecialChars(String text);
 
 void setup() {
   // Initialize Serial
-  Serial.begin(1000000); // Set baud rate to 1000000 (Ensure Serial Monitor matches)
+  Serial.begin(115200); // Set baud rate to 115200 (Ensure Serial Monitor matches)
 
   // Set DNS server
   WiFi.config(INADDR_NONE, INADDR_NONE, dns1); // Manually set DNS
