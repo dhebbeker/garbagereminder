@@ -1,3 +1,4 @@
+#include <Arduino.h>
 #include <ESP8266WiFi.h>
 #include <WiFiUdp.h>
 #include <NTPClient.h>
@@ -33,6 +34,16 @@ IPAddress dns1(8, 8, 8, 8);
 
 // LED Pin (define an Alarm LED)
 #define LED_PIN 4  // D2 pin on ESP8266 (GPIO4)
+
+// Forward declarations
+String getCurrentDate();
+String getTomorrowDate();
+String getFormattedDate();
+String fetchEvents(String currentDate, String tomorrowDate);
+String parseICS(String icsData, String currentDate, String tomorrowDate);
+String extractDate(String event);
+String extractSummary(String event);
+String convertSpecialChars(String text);
 
 void setup() {
   // Initialize Serial
