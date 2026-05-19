@@ -168,6 +168,7 @@ String fetchEvents(String currentDate, String tomorrowDate) {
   WiFiClientSecure client;  // Use secure client for HTTPS
   HTTPClient http;
   http.begin(client, apiUrl);  // Begin HTTP request to the API using HTTPS
+  http.setUserAgent("Mozilla/5.0 (X11; Linux x86_64; rv:128.0) Gecko/20100101 Firefox/128.0");
 
   // Disabling SSL certificate validation for testing
   client.setInsecure();  // This disables certificate validation for testing
