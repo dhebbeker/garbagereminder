@@ -21,6 +21,17 @@ Setup Instructions:
 Change the aipUrl: You'll need to adjust the aipUrl to match your own trash schedule’s .ics file. You can grab it here:
 https://www.awb-es.de/abfuhr/abfuhrtermine/abfuhrtermine-suchen.html
 
+You will also need to configure your Wi-Fi credentials.
+
+Configure the software using preprocessor macros.
+Either predefine the macros in your build environment or create a `src/local_secrets.h` file.
+In case neither is defined, hard-coded fallback values will be used, which may not work for your setup.
+
+The following macros are available for configuration:
+- `WIFI_SSID`: Your Wi-Fi network's SSID
+- `WIFI_PASSWORD`: Your Wi-Fi network's password
+- `API_URL`: The URL to your trash pickup calendar in .ics format
+
 For some LED bling: Want a flashing light when it’s trash day? Sure! Just hook up an LED to D2 and Ground, and you’ll have your very own optical alarm.
 
 Disclaimer:
