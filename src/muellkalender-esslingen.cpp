@@ -8,9 +8,23 @@
 #include <ESP8266HTTPClient.h>
 #include <WiFiClientSecure.h>  // Include this library for secure connections
 
-// Wi-Fi credentials
-const char* ssid = "SSID";
-const char* password = "KEY";
+#if __has_include("local_secrets.h")
+#include "local_secrets.h"
+#endif
+
+#ifdef WIFI_SSID
+constexpr const char* const ssid = WIFI_SSID;
+#else
+#warning "Wi-Fi SSID not defined. Falling back to default."
+constexpr const char* const ssid = "SSID";
+#endif
+
+#ifdef WIFI_PASSWORD
+constexpr const char* const password = WIFI_PASSWORD;
+#else
+#warning "Wi-Fi password not defined. Falling back to default."
+constexpr const char* const password = "KEY";
+#endif
 
 // NTP Client setup
 WiFiUDP ntpUDP;
@@ -27,7 +41,12 @@ NTPClient timeClient(ntpUDP, "pool.ntp.org", 3600 * 1); // Berlin timezone (UTC+
 Adafruit_SSD1306 *display;
 
 // Link to ics calendar file. Get your link here https://www.awb-es.de/abfuhr/abfuhrtermine/abfuhrtermine-suchen.html
-const char* apiUrl = "https://api.abfall.io/?kh=DaA02103019b46345f1998698563DaAd&t=ics&s=3701";
+#ifdef API_URL
+constexpr const char* const apiUrl = API_URL;
+#else
+#warning "API URL not defined. Falling back to default."
+constexpr const char* const apiUrl = "https://api.abfall.io/?kh=DaA02103019b46345f1998698563DaAd&t=ics&s=3701";
+#endif
 
 // Set DNS server to Google's DNS (8.8.8.8)
 IPAddress dns1(8, 8, 8, 8);
